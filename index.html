@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أمن المنشآت</title>
+
+<style>
+body{margin:0;font-family:Arial;background:#000;color:#fff;text-align:center;}
+
+.header{margin-top:70px;}
+.header span{color:#0ea5e9;}
+.header p{color:#6b7280;}
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+max-width:900px;
+margin:60px auto;
+padding:20px;
+}
+
+.card{
+background:#050505;
+padding:45px 35px;
+border-radius:18px;
+border:1px solid #111;
+transition:0.3s;
+cursor:pointer;
+}
+
+.card:hover{
+border:1px solid #0ea5e9;
+transform:translateY(-6px);
+box-shadow:0 0 25px rgba(14,165,233,0.2);
+}
+
+.card h3{margin:10px 0;}
+.card p{color:#9ca3af;}
+
+/* popup */
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+}
+
+.box{
+background:#0a0a0a;
+padding:30px;
+border-radius:15px;
+width:300px;
+border:1px solid #222;
+}
+
+input{
+width:100%;
+padding:12px;
+margin-top:10px;
+background:#000;
+border:1px solid #333;
+color:#fff;
+border-radius:8px;
+}
+
+button{
+margin-top:10px;
+padding:10px;
+width:100%;
+background:#0ea5e9;
+border:none;
+color:#fff;
+border-radius:8px;
+cursor:pointer;
+}
+
+.error{
+color:red;
+display:none;
+margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<h1>نظام <span>أمن المنشآت</span></h1>
+<p>عموري يدق بوري</p>
+</div>
+
+<div class="container">
+
+<div class="card" onclick="go('pages/military.html')">
+<h3>الشرطة العسكرية</h3>
+<p>استدعاء، ملفات، إصدار حكم</p>
+</div>
+
+<div class="card" onclick="go('pages/admin.html')">
+<h3>الشؤون الإدارية</h3>
+<p>إجازات، تقاعد، فصل</p>
+</div>
+
+<div class="card" onclick="openLogin()">
+<h3>قسم القادة</h3>
+<p>دخول برمز سري</p>
+</div>
+
+<div class="card" onclick="go('pages/academy.html')">
+<h3>الأكاديمية العسكرية</h3>
+<p>دورات عسكرية</p>
+</div>
+
+</div>
+
+<!-- نافذة تسجيل الدخول -->
+<div class="popup" id="popup">
+<div class="box">
+<h3>🔐 ادخل الرمز</h3>
+<input type="password" id="code" placeholder="الرقم السري">
+<button onclick="login()">دخول</button>
+<div class="error" id="error">رمز خاطئ!</div>
+</div>
+</div>
+
+<script>
+
+// فتح صفحة
+function go(page){
+    window.location.href = page;
+}
+
+// فتح النافذة
+function openLogin(){
+    document.getElementById("popup").style.display="flex";
+}
+
+// تسجيل الدخول
+function login(){
+    let code = document.getElementById("code").value;
+
+    if(code === "1993"){
+        localStorage.setItem("auth","true");
+        window.location.href = "pages/leaders.html";
+    }else{
+        document.getElementById("error").style.display="block";
+    }
+}
+
+// دخول بزر Enter
+document.getElementById("code").addEventListener("keypress", function(e){
+    if(e.key === "Enter"){
+        login();
+    }
+});
+
+</script>
+
+</body>
+</html>

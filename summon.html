@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>استدعاء عسكري</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#000;
+    color:#fff;
+}
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 20px;
+    background:#050505;
+    border-bottom:1px solid #111;
+}
+
+.back{
+    color:#0ea5e9;
+    text-decoration:none;
+}
+
+.container{
+    max-width:850px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.box{
+    background:#050505;
+    padding:25px;
+    border-radius:15px;
+    border:1px solid #111;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+    background:#000;
+    border:1px solid #222;
+    color:#fff;
+    border-radius:10px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    background:#0ea5e9;
+    border:none;
+    color:#fff;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.grid{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:15px;
+}
+
+.item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#050505;
+    padding:15px 18px;
+    border-radius:12px;
+    border:1px solid #111;
+    cursor:pointer;
+    transition:0.25s;
+}
+
+.item:hover{
+    border:1px solid #0ea5e9;
+}
+
+.copy{
+    opacity:0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+    <a href="military.html" class="back">⬅ رجوع</a>
+    <span>استدعاء عسكري</span>
+</div>
+
+<div class="container">
+
+<div class="box">
+
+    <label>رقم البرقية</label>
+    <input id="num" placeholder="اكتب الرقم">
+
+    <label>اي دي دسكورد</label>
+    <input id="discord" placeholder="123456789">
+
+    <button onclick="copyMain()">نسخ الاستدعاء</button>
+
+</div>
+
+<!-- البرنرات -->
+<div class="grid">
+
+<div class="grid">
+
+<div class="item" onclick="copyLink('https://i.imgur.com/example1.png')">
+    <span>قائد قوات امن المنشآت</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyLink('https://i.imgur.com/example2.png')">
+    <span>نائب القائد</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyLink('https://i.imgur.com/example3.png')">
+    <span>مساعد القائد</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyLink('https://i.imgur.com/example4.png')">
+    <span>استدعاء عسكري</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyLink('https://i.imgur.com/example5.png')">
+    <span>حكم عسكري</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyLink('https://i.imgur.com/example6.png')">
+    <span>إسقاط حكم</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyLink('https://i.imgur.com/example7.png')">
+    <span>فصل الشرطة العسكرية</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyLink('https://i.imgur.com/example8.png')">
+    <span>طلب مراجعة</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyLink('https://i.imgur.com/example9.png')">
+    <span>طلب تحقيق</span>
+    <span class="copy">📋</span>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+// 🔥 رابط الروم (غيره هنا فقط)
+const ROOM_LINK = "https://discord.com/channels/958432691701842031/973000008175611976";
+
+// نسخ النص
+function copyMain(){
+    let num = document.getElementById("num").value;
+    let discord = document.getElementById("discord").value;
+
+    let text = `﷽
+
+**برقية رقم : ${num}**
+
+**اسـتـدعــاء الـعـسـكـري الـمذكـور أدنـاه :**
+
+<@${discord}>
+
+**بـادر بـالـتـواصـل عـبـر روم :**
+
+${ROOM_LINK}
+
+**لـديـك مـهـلـة سـاعـة خـلاف ذلـك يـصـدر الـحـكـم فـورا**`;
+
+    navigator.clipboard.writeText(text);
+    showMsg("تم النسخ ✔");
+}
+
+// نسخ رابط صورة
+function copyLink(link){
+    navigator.clipboard.writeText(link);
+    showMsg("تم نسخ الرابط ✔");
+}
+
+// إشعار
+function showMsg(text){
+    let msg=document.createElement("div");
+    msg.innerText=text;
+    msg.style.position="fixed";
+    msg.style.bottom="20px";
+    msg.style.right="20px";
+    msg.style.background="#0ea5e9";
+    msg.style.padding="10px 15px";
+    msg.style.borderRadius="8px";
+    msg.style.color="#fff";
+
+    document.body.appendChild(msg);
+
+    setTimeout(()=>msg.remove(),1500);
+}
+
+</script>
+
+</body>
+</html>

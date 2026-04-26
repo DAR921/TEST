@@ -1,0 +1,213 @@
+  <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إسقاط حكم</title>
+
+<style>
+body{margin:0;font-family:Tahoma;background:#000;color:#fff;}
+
+.navbar{
+display:flex;
+justify-content:space-between;
+padding:15px;
+background:#050505;
+border-bottom:1px solid #111;
+}
+
+.container{max-width:850px;margin:40px auto;padding:20px;}
+
+.box{
+background:#050505;
+padding:25px;
+border-radius:12px;
+border:1px solid #111;
+margin-bottom:20px;
+}
+
+label{display:block;margin-top:15px;color:#aaa;}
+
+input, textarea{
+width:100%;
+padding:12px;
+background:#000;
+border:1px solid #222;
+color:#fff;
+border-radius:8px;
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:20px;
+background:#2563eb;
+border:none;
+color:#fff;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* البنرات */
+.grid{
+margin-top:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:12px;
+}
+
+.item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#050505;
+padding:12px;
+border-radius:10px;
+border:1px solid #111;
+cursor:pointer;
+}
+
+.item:hover{background:#080808;}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+<a href="military.html" style="color:#aaa">⬅ رجوع</a>
+<span>إسقاط حكم</span>
+</div>
+
+<div class="container">
+
+<div class="box">
+
+<label>رقم البرقية</label>
+<input id="num">
+
+<label>القاضي (ID)</label>
+<input id="judge">
+
+<label>القائد (ID)</label>
+<input id="leader">
+
+<label>العسكري (ID)</label>
+<input id="soldier">
+
+<label>الحكم</label>
+<textarea id="judgment"></textarea>
+
+<label>رابط الحكم</label>
+<input id="link">
+
+<button onclick="copyFull()">نسخ القرار</button>
+
+</div>
+
+<!-- البنرات -->
+<div class="box">
+<div class="grid">
+
+<div class="item" onclick="copyFromBanner(this,'54564','545465','454564','44','يسييسيس','WWW')">
+<span>إسقاط جاهز 1</span>
+<span>📋</span>
+</div>
+
+<div class="item" onclick="copyFromBanner(this,'111','222','333','444','حكم تجريبي','LINK')">
+<span>إسقاط جاهز 2</span>
+<span>📋</span>
+</div>
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// النسخ من النموذج
+function copyFull(){
+copyText(
+num.value,
+judge.value,
+leader.value,
+soldier.value,
+judgment.value,
+link.value
+);
+}
+
+// النسخ من البنر
+function copyFromBanner(el,num,judge,leader,soldier,judgment,link){
+
+el.style.transform="scale(0.95)";
+setTimeout(()=> el.style.transform="scale(1)",150);
+
+copyText(num,judge,leader,soldier,judgment,link);
+}
+
+// النص الكامل
+function copyText(num,judge,leader,soldier,judgment,link){
+
+let text = `**﷽**
+
+**برقية رقم : ${num}**
+
+**بعد مراجعة الانظمه والقوانين فقد امرنا بما هو ات**
+
+**قرار اسقاط حكم صادر من قبل القاضي** :
+
+<@${judge}>
+
+**بأمر من معالي** :
+
+<@${leader}>
+
+**على العسكري المذكور ادناه** :
+
+<@${soldier}>
+
+**الحكم :**
+
+\`${judgment}\`
+
+**رابط الحكم :**
+
+(${link})
+
+**ترسل نسخة لـ** <@&1404535917724827758>
+
+**رئاسة الشرطة العسكرية**
+
+اي دي دسكورد
+<@&1404535924469010482>
+
+اي دي دسكورد
+<@&1404535924280529059>
+
+اي دي دسكورد`;
+
+navigator.clipboard.writeText(text);
+showMsg("تم النسخ ✔");
+}
+
+// إشعار
+function showMsg(text){
+let msg=document.createElement("div");
+msg.innerText=text;
+msg.style.position="fixed";
+msg.style.bottom="20px";
+msg.style.right="20px";
+msg.style.background="#111";
+msg.style.padding="10px";
+msg.style.borderRadius="8px";
+msg.style.color="#fff";
+
+document.body.appendChild(msg);
+setTimeout(()=>msg.remove(),1500);
+}
+
+</script>
+
+</body>
+</html>

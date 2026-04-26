@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ملف تحقيق</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Tahoma, Arial;
+    background:#000;
+    color:#fff;
+}
+
+/* الهيدر */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 20px;
+    background:#050505;
+    border-bottom:1px solid #111;
+}
+
+/* رجوع */
+.back{
+    color:#aaa;
+    text-decoration:none;
+}
+
+/* الحاوية */
+.container{
+    max-width:900px;
+    margin:40px auto;
+    padding:20px;
+}
+
+/* البوكس */
+.box{
+    background:#050505;
+    padding:25px;
+    border-radius:12px;
+    border:1px solid #111;
+    margin-bottom:20px;
+}
+
+/* العناوين */
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:5px;
+    color:#aaa;
+}
+
+/* الإدخال */
+input, textarea{
+    width:100%;
+    padding:12px;
+    background:#000;
+    border:1px solid #222;
+    color:#fff;
+    border-radius:8px;
+}
+
+/* الراديو */
+.radio{
+    display:flex;
+    gap:20px;
+    margin-top:8px;
+}
+
+/* زر */
+button{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    background:#111;
+    border:1px solid #222;
+    color:#fff;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1a1a1a;
+}
+
+/* البنرات */
+.grid{
+    margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:12px;
+}
+
+.item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#050505;
+    padding:14px;
+    border-radius:10px;
+    border:1px solid #111;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.item:hover{
+    background:#080808;
+}
+
+.copy{
+    opacity:0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+<a href="military.html" class="back">⬅ رجوع</a>
+<span>ملف تحقيق</span>
+</div>
+
+<div class="container">
+
+<div class="box">
+
+<label>رقم التحقيق</label>
+<input id="num">
+
+<label>المحقق (ID)</label>
+<input id="investigator">
+
+<label>العسكري (ID)</label>
+<input id="soldier">
+
+<label>التهمة</label>
+<input id="charge">
+
+<label>هل حضر الاستدعاء</label>
+<div class="radio">
+<label><input type="radio" name="r1" value="نعم"> نعم</label>
+<label><input type="radio" name="r1" value="لا"> لا</label>
+</div>
+
+<label>هل مذنب</label>
+<div class="radio">
+<label><input type="radio" name="r2" value="نعم"> نعم</label>
+<label><input type="radio" name="r2" value="لا"> لا</label>
+</div>
+
+<label>هل لديه انذار سابق</label>
+<div class="radio">
+<label><input type="radio" name="r3" value="نعم"> نعم</label>
+<label><input type="radio" name="r3" value="لا"> لا</label>
+</div>
+
+<label>الحكم</label>
+<input id="judgment">
+
+<label>الدليل</label>
+<textarea id="proof"></textarea>
+
+<button onclick="copyInvestigation()">نسخ ملف التحقيق</button>
+
+</div>
+
+<!-- البنرات -->
+<div class="box">
+
+<div class="grid">
+
+<div class="item" onclick="copyBanner(this,'https://i.imgur.com/example1.png')">
+    <span>قائد قوات امن المنشآت</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyBanner(this,'https://i.imgur.com/example2.png')">
+    <span>نائب القائد</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyBanner(this,'https://i.imgur.com/example3.png')">
+    <span>مساعد القائد</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyBanner(this,'https://i.imgur.com/example4.png')">
+    <span>استدعاء عسكري</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyBanner(this,'https://i.imgur.com/example5.png')">
+    <span>حكم عسكري</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyBanner(this,'https://i.imgur.com/example6.png')">
+    <span>إسقاط حكم</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyBanner(this,'https://i.imgur.com/example7.png')">
+    <span>فصل الشرطة العسكرية</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyBanner(this,'https://i.imgur.com/example8.png')">
+    <span>طلب مراجعة</span>
+    <span class="copy">📋</span>
+</div>
+
+<div class="item" onclick="copyBanner(this,'https://i.imgur.com/example9.png')">
+    <span>طلب تحقيق</span>
+    <span class="copy">📋</span>
+</div>
+
+</div>
+</div>
+
+<script>
+
+function copyBanner(el, text){
+    navigator.clipboard.writeText(text);
+
+    el.style.transform = "scale(0.95)";
+    setTimeout(()=> el.style.transform="scale(1)",150);
+
+    showMsg("تم النسخ ✔");
+}
+
+function copyInvestigation(){
+
+let text = `** الموضوع : فتح ملف تحقيق رقم : ${num.value}**
+
+** المحقق : <@${investigator.value}>**
+
+** على العسكري المذكور : <@${soldier.value}>**
+
+** التهمة : ${charge.value}**
+
+** هل حضر : ${getRadio("r1")}**
+
+** هل مذنب : ${getRadio("r2")}**
+
+** لديه انذار : ${getRadio("r3")}**
+
+** الحكم : ${judgment.value}**
+
+** دليل : ${proof.value}**`;
+
+navigator.clipboard.writeText(text);
+showMsg("تم النسخ ✔");
+}
+
+function getRadio(name){
+let r = document.querySelector(`input[name="${name}"]:checked`);
+return r ? r.value : "غير محدد";
+}
+
+function showMsg(text){
+let msg=document.createElement("div");
+msg.innerText=text;
+msg.style.position="fixed";
+msg.style.bottom="20px";
+msg.style.right="20px";
+msg.style.background="#111";
+msg.style.padding="10px";
+msg.style.borderRadius="8px";
+msg.style.color="#fff";
+
+document.body.appendChild(msg);
+setTimeout(()=>msg.remove(),1500);
+}
+
+</script>
+
+</body>
+</html>
